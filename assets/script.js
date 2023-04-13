@@ -32,16 +32,8 @@ $(function () {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
 
-  /****
-   * div example to be built
-      <div id="hour-9" class="row time-block past">
-        <div class="col-2 col-md-1 hour text-center py-3">9AM</div>
-        <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
-        <button class="btn saveBtn col-2 col-md-1" aria-label="save">
-          <i class="fas fa-save" aria-hidden="true"></i>
-        </button>
-      </div>
-   */
+
+  
   for (var x = 0; x < hours.length; x++) {
     let mainDiv = $("<div class='row time-block'>");
     mainDiv.attr("id", `hour-${hours[x]}`)
