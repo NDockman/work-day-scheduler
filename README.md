@@ -4,6 +4,6 @@ The work day scheduler application provides an easy solution for keeping your da
 
 ## Link to the Production Version
 
-https://ndockman.github.io/timed-code-quiz/
+https://ndockman.github.io/work-day-scheduler/
 
 ![Screenshot of part of the webpage](./images/work_day_scheduler_screenshot2023-04-13.png)
