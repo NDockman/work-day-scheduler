@@ -7,10 +7,8 @@
 $(function () {
 
   var timeDisplay = document.getElementById("currentDay");
-  var saveBtn = $(".saveBtn");
   var hourBlocks = $(".container-lg");
-  var hours = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];    //remove 18 through 24
-
+  var hours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
 
 
@@ -20,9 +18,13 @@ $(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  addEventListener("click", function() {
 
-  })
+ $(document).on("click", ".saveBtn", function(){
+    var workEvent = $(this).siblings(".description").val();
+    var timeBlock = $(this).parent().attr("id");
+    localStorage.setItem(timeBlock, workEvent);
+ })
+
 
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
@@ -32,7 +34,7 @@ $(function () {
 
   /****
    * div example to be built
-   *       <div id="hour-9" class="row time-block past">
+      <div id="hour-9" class="row time-block past">
         <div class="col-2 col-md-1 hour text-center py-3">9AM</div>
         <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
         <button class="btn saveBtn col-2 col-md-1" aria-label="save">
@@ -45,16 +47,16 @@ $(function () {
     mainDiv.attr("id", `hour-${hours[x]}`)
     let hourDiv = $("<div class='col-2 col-md-1 hour text-center py-3'>");
 
-    let americanHours = hours[x]+ " am";
+    let workDayHours = hours[x]+ " am";
     if(hours[x] >= 12) {
-      americanHours = hours[x]+ " pm";
-      if(hours[x] >= 13) americanHours = hours[x] - 12  + " pm";
+      workDayHours = hours[x]+ " pm";
+      if(hours[x] >= 13) {
+        workDayHours = hours[x] - 12  + " pm";
+      }
     }
-    hourDiv.append(americanHours);
+    hourDiv.append(workDayHours);
 
     let textArea = $("<textarea class='col-8 col-md-10 description' rows='3'>");
-
-    
     let saveButton = $("<button class='btn saveBtn col-2 col-md-1' aria-label='save'>");
     
     let saveIcon = $("<i class='fas fa-save' aria-hidden='true'>");
@@ -64,13 +66,13 @@ $(function () {
 
     //determine if the hour is past, present, or future
     if (hours[x] < dayjs().hour()) {
-      mainDiv.attr("class", "past");
+      mainDiv.addClass("past");
     }
     else if (hours[x] === dayjs().hour()) {
-      mainDiv.attr("class", "present");
+      mainDiv.addClass("present");
     }
     else {
-      mainDiv.attr("class", "future");
+      mainDiv.addClass("future");
     }
   }
 
@@ -80,7 +82,11 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
 
+  for(var y = 9; y <= 17; y++){
+    $("#hour-" + y + " .description").val(localStorage.getItem("hour-" + y));
+  }
   
+
 
   // Displays the current date in the header of the page.
   function updateTime() {
