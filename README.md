@@ -6,4 +6,4 @@ The work day scheduler application provides an easy solution for keeping your da
 
 https://ndockman.github.io/work-day-scheduler/
 
-![Screenshot of part of the webpage](./images/work_day_scheduler_screenshot2023-04-13.png)
+![Screenshot of part of the webpage](./Images/work_day_scheduler_screenshot2023-04-13.png)
